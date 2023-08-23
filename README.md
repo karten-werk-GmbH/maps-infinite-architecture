@@ -2,6 +2,9 @@
 
 This project is an example of how to apply the [infinite architecture](https://www.logicroom.co) in a web mapping project.
 
+## Architecture Overview
+![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/0891e17c-05ff-423c-98d3-8a1e912bac85)
+
 ## Getting started
 
 Clone the project
