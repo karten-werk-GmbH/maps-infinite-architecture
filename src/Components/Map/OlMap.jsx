@@ -12,7 +12,6 @@ const OlMap = () => {
   useEffect(() => {
     const load = async () => {
       const vm = await mapPresenter.current.initMap();
-      console.log("vm", vm);
       if (vm && olMap === null) {
         const map = new Map({
           target: "olMap",

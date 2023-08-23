@@ -22,7 +22,6 @@ class FeatureInfoPresenter {
   }
 
   pmToVm(pm) {
-    console.log("pm", pm);
     const features = pm.vectorLayer.getSource().getFeatures();
     const featureProps = features.map((feature) => {
       const props = feature.getProperties();
