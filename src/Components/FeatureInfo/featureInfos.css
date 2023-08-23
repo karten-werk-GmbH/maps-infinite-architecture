@@ -1,0 +1,11 @@
+.featureInfoContainer {
+  background-color: lightgrey;
+  border-radius: 8px;
+  padding: 12px;
+  position: absolute;
+  bottom: 125px;
+  left: 0;
+  min-width: 430px;
+  max-width: 430px;
+  z-index: 1;
+}

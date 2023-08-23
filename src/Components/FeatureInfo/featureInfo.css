@@ -1,0 +1,9 @@
+.attributetable__cell {
+  border: 1px dashed darkgrey;
+  padding: 4px;
+}
+
+table {
+  border-spacing: 0;
+  width: 100%;
+}
