@@ -3,6 +3,20 @@
 This project is an example of how to apply the [infinite architecture](https://www.logicroom.co) in a web mapping project.
 
 ## Architecture Overview
+
+This project uses the **Observer Pattern**, **Presenters**, **Repositories** and **Gateways** to display a webmap. Third party libraries
+like OpenLayers or React are only used in Components and Gateways. This separation of concerns allows great testability
+and scales very well.
+<br /><br />
+**Features:**
+
+- URL updates when interacting on the map.
+- If URL Parameters are available, the map uses them on load.
+- Layers can be turned on/off and opacity can be changed.
+- Layer legend can be shown.
+- A click on map features, performs a getFeatureInfo Request to the WMS Layers.
+  <br /><br />
+
 ![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/0891e17c-05ff-423c-98d3-8a1e912bac85)
 
 ## Getting started
@@ -37,6 +51,12 @@ You can run the tests with the following command
 ```bash
 npm run test
 ```
+
+## Dependencies
+
+- [OpenLayers](https://openlayers.org/)
+- [QueryString](https://github.com/sindresorhus/query-string)
+- [React](https://react.dev/)
 
 ## Contributing
 
