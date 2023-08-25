@@ -39,12 +39,13 @@ class MapRepository {
     }
   }
 
-  async initLayers({ callback, queryParams }) {
+  async initLayers(callback) {
     if (this.isLayersLoading === true) return false;
     this.isLayersLoading = true;
     this.subscribe(callback);
     try {
       const overlaysDto = await this.httpGateway.get("layerConfig");
+      const queryParams = this.urlGateway.getSanitizedQueryParams();
 
       // if we have query params, update overlays.
       if (queryParams?.layers?.length > 0) {

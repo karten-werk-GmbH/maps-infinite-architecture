@@ -5,11 +5,7 @@ class LayerPresenter {
   async initLayers(componentCb) {
     try {
       const callback = this.getCallback(componentCb);
-      const queryParams = urlGateway.getSanitizedQueryParams();
-      const layerConfig = await mapRepository.initLayers({
-        callback,
-        queryParams,
-      });
+      const layerConfig = await mapRepository.initLayers(callback);
       return layerConfig;
     } catch (error) {
       console.error(error);
