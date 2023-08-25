@@ -1,6 +1,6 @@
 import LayerPresenter from "./LayerPresenter";
-import httpGateway from "../App/HttpGateway";
-import urlGateway from "../App/UrlGateway";
+import httpGateway from "../../Shared/HttpGateway";
+import urlGateway from "../../Shared/UrlGateway";
 import { it, expect, vi, beforeEach } from "vitest";
 import { overlays, layerQueryParams } from "../../Shared/testHelpers";
 

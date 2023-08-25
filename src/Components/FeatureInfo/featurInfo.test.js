@@ -2,7 +2,7 @@ import { it, expect, vi, beforeEach } from "vitest";
 import FeatureInfoPresenter from "./FeatureInfoPresenter";
 import featureInfoRepository from "./FeatureInfoRepository";
 import { getFeatureInfoParams, fakePm } from "../../Shared/testHelpers";
-import httpGateway from "../App/HttpGateway";
+import httpGateway from "../../Shared/HttpGateway";
 
 let viewModel;
 let featureInfoPresenter;

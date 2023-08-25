@@ -1,6 +1,6 @@
 import MapPresenter from "./MapPresenter";
-import httpGateway from "../App/HttpGateway";
-import urlGateway from "../App/UrlGateway";
+import httpGateway from "../../Shared/HttpGateway";
+import urlGateway from "../../Shared/UrlGateway";
 import { it, vi, expect, beforeEach } from "vitest";
 import mapConfig from "./mapConfig";
 
