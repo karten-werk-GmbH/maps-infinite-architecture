@@ -28,20 +28,25 @@ class HttpGateway {
       case "mapConfig":
         return new Promise((resolve, reject) => {
           window.setTimeout(() => {
-            mapConfig.basemap = this.createBasemapLayer(mapConfig.basemap);
-            resolve(mapConfig);
+            if (mapConfig && mapConfig.basemap) {
+              mapConfig.basemap = this.createBasemapLayer(mapConfig.basemap);
+              resolve(mapConfig);
+            } else {
+              reject(new Error("map confing is not available"));
+            }
           }, 100);
         });
       case "layerConfig":
         return new Promise((resolve, reject) => {
           window.setTimeout(() => {
-            if (layerConfig && layerConfig.length > 0)
-              [
-                layerConfig.forEach((layer) => {
-                  layer.tileLayer = this.createOverlayLayer(layer);
-                }),
-              ];
-            resolve(layerConfig);
+            if (layerConfig && layerConfig.length > 0) {
+              layerConfig.forEach((layer) => {
+                layer.tileLayer = this.createOverlayLayer(layer);
+              }),
+                resolve(layerConfig);
+            } else {
+              reject(new Error("layer config is not available"));
+            }
           }, 50);
         });
       default:
@@ -77,7 +82,7 @@ class HttpGateway {
             }
           }
         } catch (error) {
-          return new Promise((resolve, reject) =>
+          return new Promise((resolve) =>
             resolve({ ...result, error: error.message }),
           );
         }
