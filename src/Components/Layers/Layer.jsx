@@ -13,7 +13,7 @@ const Layer = ({ layer, updateLayer }) => {
           updateLayer({
             layer,
             visible: e.target.checked,
-            opacity: layer.opacity,
+            opacity,
           });
         }}
       />
@@ -30,7 +30,7 @@ const Layer = ({ layer, updateLayer }) => {
           updateLayer({
             layer,
             opacity: e.target.value,
-            visible: layer.visible,
+            visible,
           });
         }}
       />
