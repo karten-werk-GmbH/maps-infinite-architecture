@@ -25,7 +25,7 @@ class FeatureInfoPresenter {
     const features = pm.vectorLayer.getSource().getFeatures();
     const featureProps = features.map((feature) => {
       const props = feature.getProperties();
-      const layername = props.layername;
+      const layername = props.layername.toUpperCase();
       delete props.geometryProperty;
       delete props.layername;
       const keys = Object.keys(props);

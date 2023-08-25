@@ -7,7 +7,7 @@ const AttributeTable = (props) => {
       <thead>
         <tr>
           <td colSpan={2}>
-            <strong>{feature.layername.toUpperCase()}</strong>
+            <strong>{feature.layername}</strong>
           </td>
         </tr>
       </thead>
