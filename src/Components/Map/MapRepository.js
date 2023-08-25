@@ -22,44 +22,53 @@ class MapRepository {
 
     // update the url every time the pm changes
     this.subscribe((pm) => this.updateUrl({ ...pm }));
-    const mapConfigDto = await this.httpGateway.get("mapConfig");
-    const queryParams = this.urlGateway.getSanitizedQueryParams();
-    const pm = {
-      basemap: mapConfigDto.basemap,
-      zoom: queryParams.zoom || mapConfigDto.zoom,
-      center: queryParams.center || mapConfigDto.center,
-    };
-    this.updatePm(pm);
-    this.isMapLoading = false;
-    return pm;
+    try {
+      const mapConfigDto = await this.httpGateway.get("mapConfig");
+      const queryParams = this.urlGateway.getSanitizedQueryParams();
+      const pm = {
+        basemap: mapConfigDto.basemap,
+        zoom: queryParams.zoom || mapConfigDto.zoom,
+        center: queryParams.center || mapConfigDto.center,
+      };
+      this.updatePm(pm);
+      return pm;
+    } catch (error) {
+      console.error(error);
+      this.isMapLoading = false;
+    }
   }
 
   async initLayers({ callback, queryParams }) {
     if (this.isLayersLoading === true) return false;
     this.isLayersLoading = true;
     this.subscribe(callback);
-    const overlaysDto = await this.httpGateway.get("layerConfig");
+    try {
+      const overlaysDto = await this.httpGateway.get("layerConfig");
 
-    // if we have query params, update overlays.
-    if (queryParams?.layers?.length > 0) {
-      for (let i = 0; i < queryParams.layers.length; i++) {
-        const layername = queryParams.layers[i];
-        const visible = queryParams.layers_visibility[i];
-        const opacity = queryParams.layers_opacity[i];
-        const index = overlaysDto.findIndex(
-          (element) => element.name === layername,
-        );
-        if (index !== -1) {
-          overlaysDto[index].opacity = opacity;
-          overlaysDto[index].tileLayer.setOpacity(opacity);
-          overlaysDto[index].visible = visible;
-          overlaysDto[index].tileLayer.setVisible(visible);
+      // if we have query params, update overlays.
+      if (queryParams?.layers?.length > 0) {
+        for (let i = 0; i < queryParams.layers.length; i++) {
+          const layername = queryParams.layers[i];
+          const visible = queryParams.layers_visibility[i];
+          const opacity = queryParams.layers_opacity[i];
+          const index = overlaysDto.findIndex(
+            (element) => element.name === layername,
+          );
+          if (index !== -1) {
+            overlaysDto[index].opacity = opacity;
+            overlaysDto[index].tileLayer.setOpacity(opacity);
+            overlaysDto[index].visible = visible;
+            overlaysDto[index].tileLayer.setVisible(visible);
+          }
         }
       }
+      this.updatePm({ overlays: overlaysDto });
+      this.isLayersLoading = false;
+      return overlaysDto;
+    } catch (error) {
+      console.error(error);
+      this.isLayerLoading = false;
     }
-    this.updatePm({ overlays: overlaysDto });
-    this.isLayersLoading = false;
-    return overlaysDto;
   }
 
   subscribe(callback) {
