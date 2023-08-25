@@ -31,8 +31,8 @@ const OlMap = () => {
   return (
     <>
       <div id="olMap"></div>
-      <LayerControl map={olMap} />
       <FeatureInfoContainer map={olMap} />
+      <LayerControl map={olMap} />
     </>
   );
 };
