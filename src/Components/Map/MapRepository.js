@@ -31,6 +31,7 @@ class MapRepository {
         center: queryParams.center || mapConfigDto.center,
       };
       this.updatePm(pm);
+      this.isMapLoading = false;
       return pm;
     } catch (error) {
       console.error(error);
