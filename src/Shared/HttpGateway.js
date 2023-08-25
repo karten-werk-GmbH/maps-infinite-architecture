@@ -58,6 +58,7 @@ class HttpGateway {
         }
     }
   };
+
   getFeatureInfo = async ({ event, queryLayers, projection, resolution }) => {
     const result = {
       vectorLayer: featureOverlayLayer,
@@ -95,7 +96,7 @@ class HttpGateway {
   };
 
   /*
-   * create a ol Tile Layer object which can be used to add to the map.
+   * create a ol Tile Layer object with XYZ source.
    * @Param {object} layerObj - stores properties like url, zIndex, and attribution.
    * @returns {object} - ol/layer/Tile object.
    */
@@ -111,6 +112,11 @@ class HttpGateway {
     });
   };
 
+  /*
+   * create a ol Tile Layer object with TileWMS source..
+   * @Param {object} layerObj - stores properties like url, zIndex, and attribution.
+   * @returns {object} - ol/layer/Tile object.
+   */
   createOverlayLayer = (layerObj) => {
     const {
       name,

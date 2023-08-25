@@ -10,6 +10,7 @@ class LayerPresenter {
       console.error(error);
     }
   }
+
   getCallback(componentCb) {
     if (typeof componentCb === "function") {
       const callback = (pm) => {

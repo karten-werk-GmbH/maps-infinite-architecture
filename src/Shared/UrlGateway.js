@@ -41,6 +41,11 @@ class UrlGateway {
     return queryString.parse(window.location.search);
   };
 
+  /*
+   * creates layer url parameters from layer objects.
+   * @param {object} overlays - overlay objects.
+   * @returns {object} - object with keys and stringified values.
+   */
   getLayerUrlParams = (overlays) => {
     let layernames = "";
     let layers_opacity = "";

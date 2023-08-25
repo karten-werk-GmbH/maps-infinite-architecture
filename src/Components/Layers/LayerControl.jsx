@@ -3,6 +3,7 @@ import Layer from "./Layer";
 import LayerPresenter from "./LayerPresenter";
 import PropTypes from "prop-types";
 import "./layers.css";
+
 const LayerControl = (props) => {
   const layerPresenter = useRef(new LayerPresenter());
   const [layers, setLayers] = useState([]);
