@@ -22,14 +22,14 @@ class FeatureInfoRepository {
 
   getFeatureInfos = async ({ event, queryLayers, projection, resolution }) => {
     try {
-      const response = await this.gateway.getFeatureInfo({
+      const featureInfoDto = await this.gateway.getFeatureInfo({
         event,
         queryLayers,
         projection,
         resolution,
       });
-      this.setPm(response);
-      return response;
+      this.setPm(featureInfoDto);
+      return featureInfoDto;
     } catch (error) {
       console.error(error);
     }
