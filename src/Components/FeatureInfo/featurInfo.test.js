@@ -45,7 +45,7 @@ it("should return false for the available prop, when empty queryLayers array is 
 it("should transform a pm to a vm as expected", () => {
   const result = featureInfoPresenter.pmToVm(fakePm);
   expect(result.features).toBeInstanceOf(Array);
-  expect(result.features[0].layername).toBe("my fake layer");
+  expect(result.features[0].layername).toBe("MY FAKE LAYER");
   expect(result.properties).toBeInstanceOf(Object);
   expect(result.properties.geometryProperty).toBeUndefined();
   expect(result.properties).toEqual({
