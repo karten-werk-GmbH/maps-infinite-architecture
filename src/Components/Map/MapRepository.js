@@ -66,7 +66,6 @@ class MapRepository {
       }
       this.updatePm({ overlays: overlaysDto });
       this.isLayersLoading = false;
-      return overlaysDto;
     } catch (error) {
       console.error(error);
       this.isLayerLoading = false;

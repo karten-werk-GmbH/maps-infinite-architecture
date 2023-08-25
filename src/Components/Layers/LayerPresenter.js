@@ -5,8 +5,7 @@ class LayerPresenter {
   async initLayers(componentCb) {
     try {
       const callback = this.getCallback(componentCb);
-      const layerConfig = await mapRepository.initLayers(callback);
-      return layerConfig;
+      await mapRepository.initLayers(callback);
     } catch (error) {
       console.error(error);
     }
