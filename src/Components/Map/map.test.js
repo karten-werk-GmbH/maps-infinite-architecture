@@ -5,11 +5,9 @@ import { it, vi, expect, beforeEach } from "vitest";
 import mapConfig from "./mapConfig";
 
 let mapPresenter;
-let viewModel;
 let parsedSearchParams;
 
 beforeEach(() => {
-  viewModel = null;
   mapPresenter = new MapPresenter();
   parsedSearchParams = {
     zoom: 11,
