@@ -21,7 +21,8 @@ and scales very well.
 
 ![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/7bd113bb-4013-46c5-a469-95da9519b94c)
 
-![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/cc9cb008-5b28-42c4-8790-46a2b1ae7960)
+![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/65e25031-bd2a-496d-8e1c-04b9c033893f)
+
 
 
 ## Getting started
