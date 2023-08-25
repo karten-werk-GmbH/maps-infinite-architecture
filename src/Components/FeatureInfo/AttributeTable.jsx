@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./featureInfo.css";
 const AttributeTable = (props) => {
   const { feature } = props;
@@ -25,3 +26,7 @@ const AttributeTable = (props) => {
 };
 
 export default AttributeTable;
+
+AttributeTable.propTypes = {
+  feature: PropTypes.object.isRequired,
+};

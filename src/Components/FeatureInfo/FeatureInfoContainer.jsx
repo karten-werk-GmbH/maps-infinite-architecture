@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import "./featureInfos.css";
 import FeatureInfoPresenter from "./FeatureInfoPresenter";
 import AttributeTable from "./AttributeTable";
+import PropTypes from "prop-types";
 
 const FeatureInfoContainer = (props) => {
   const [featureInfos, setFeatureInfos] = useState(null);
@@ -63,3 +64,7 @@ const FeatureInfoContainer = (props) => {
   return <div className="featureInfoContainer">No Feature Infos available</div>;
 };
 export default FeatureInfoContainer;
+
+FeatureInfoContainer.propTypes = {
+  map: PropTypes.object,
+};

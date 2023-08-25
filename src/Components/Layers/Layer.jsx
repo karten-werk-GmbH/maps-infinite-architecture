@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Layer = ({ layer, updateLayer }) => {
   const { name, visible, opacity, legendUrl } = layer;
   return (
@@ -38,3 +40,8 @@ const Layer = ({ layer, updateLayer }) => {
 };
 
 export default Layer;
+
+Layer.propTypes = {
+  layer: PropTypes.object.isRequired,
+  updateLayer: PropTypes.func.isRequired,
+};

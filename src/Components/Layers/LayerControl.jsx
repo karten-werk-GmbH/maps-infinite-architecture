@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import Layer from "./Layer";
 import LayerPresenter from "./LayerPresenter";
+import PropTypes from "prop-types";
 import "./layers.css";
 const LayerControl = (props) => {
   const layerPresenter = useRef(new LayerPresenter());
@@ -44,3 +45,7 @@ const LayerControl = (props) => {
 };
 
 export default LayerControl;
+
+LayerControl.propTypes = {
+  map: PropTypes.object,
+};
