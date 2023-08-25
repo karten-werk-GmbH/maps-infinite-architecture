@@ -14,8 +14,7 @@ const LayerControl = (props) => {
           setLayers(vm);
         }
       };
-      const layers = await layerPresenter.current.initLayers(callback);
-      callback(layers);
+      await layerPresenter.current.initLayers(callback);
     };
     load();
   }, []);
