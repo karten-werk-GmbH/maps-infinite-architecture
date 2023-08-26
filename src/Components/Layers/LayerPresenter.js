@@ -1,5 +1,4 @@
 import mapRepository from "../Map/MapRepository";
-import urlGateway from "../../Shared/UrlGateway";
 
 class LayerPresenter {
   async initLayers(componentCb) {
