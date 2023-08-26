@@ -17,11 +17,13 @@ and scales very well.
 - A click on map features, performs a getFeatureInfo Request to the WMS Layers.
   <br /><br />
 
-![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/0891e17c-05ff-423c-98d3-8a1e912bac85)
+![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/7a38dfa7-f827-4878-991a-c9796c6f7e60)
 
-![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/7bd113bb-4013-46c5-a469-95da9519b94c)
+![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/9879d6a5-943b-419c-8e2c-9009c5bd073a)
 
-![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/65e25031-bd2a-496d-8e1c-04b9c033893f)
+![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/8b017c07-5495-4335-ad0e-ce64dd23e3b0)
+
+
 
 
 
