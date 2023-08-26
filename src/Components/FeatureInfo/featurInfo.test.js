@@ -24,8 +24,8 @@ it("should call the subscribe functions", async () => {
   expect(subscribeSpy).toHaveBeenCalledTimes(1);
 });
 
-it("should return false when no params are provided", () => {
-  const result = featureInfoPresenter.getFeatureInfos();
+it("should return false when no params are provided", async () => {
+  const result = await featureInfoPresenter.getFeatureInfos();
 
   expect(result).toEqual(false);
 });

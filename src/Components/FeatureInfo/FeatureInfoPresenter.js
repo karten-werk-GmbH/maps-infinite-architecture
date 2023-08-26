@@ -9,11 +9,11 @@ class FeatureInfoPresenter {
     featureInfoRepository.subscribe(callback);
   }
 
-  getFeatureInfos({ event, queryLayers, projection, resolution } = {}) {
+  async getFeatureInfos({ event, queryLayers, projection, resolution } = {}) {
     if (!event || !queryLayers || !projection || !resolution) {
       return false;
     }
-    return featureInfoRepository.getFeatureInfos({
+    await featureInfoRepository.getFeatureInfos({
       event,
       queryLayers,
       projection,
