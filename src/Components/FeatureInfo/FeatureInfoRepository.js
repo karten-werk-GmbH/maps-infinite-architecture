@@ -10,8 +10,8 @@ class FeatureInfoRepository {
     this.gateway = httpGateway;
   }
 
-  setPm = (vm) => {
-    this.programmersModel.value = { ...vm };
+  setPm = (dto) => {
+    this.programmersModel.value = { ...dto };
   };
 
   subscribe = (callback) => {
@@ -29,7 +29,6 @@ class FeatureInfoRepository {
         resolution,
       });
       this.setPm(featureInfoDto);
-      return featureInfoDto;
     } catch (error) {
       console.error(error);
     }
