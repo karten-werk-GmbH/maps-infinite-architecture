@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 import PropTypes from "prop-types";
 
 // create a new context for the container
