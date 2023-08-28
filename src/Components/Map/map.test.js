@@ -1,14 +1,15 @@
-import MapPresenter from "./MapPresenter";
+//import MapPresenter from "./MapPresenter";
 import httpGateway from "../../Shared/HttpGateway";
 import urlGateway from "../../Shared/UrlGateway";
 import { it, vi, expect, beforeEach } from "vitest";
 import mapConfig from "./mapConfig";
+import container from "../../Shared/IOC/container";
 
 let mapPresenter;
 let parsedSearchParams;
 
 beforeEach(() => {
-  mapPresenter = new MapPresenter();
+  mapPresenter = container.resolve("mapPresenter");
   parsedSearchParams = {
     zoom: 11,
     center: "5700000,2344456",

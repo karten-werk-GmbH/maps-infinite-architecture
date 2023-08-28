@@ -1,8 +1,8 @@
 import { it, expect, vi, beforeEach } from "vitest";
-import FeatureInfoPresenter from "./FeatureInfoPresenter";
 import featureInfoRepository from "./FeatureInfoRepository";
 import { getFeatureInfoParams, fakePm } from "../../Shared/testHelpers";
 import httpGateway from "../../Shared/HttpGateway";
+import container from "../../Shared/IOC/container";
 
 let viewModel;
 let featureInfoPresenter;
@@ -10,7 +10,7 @@ let callback;
 
 beforeEach(() => {
   viewModel = null;
-  featureInfoPresenter = new FeatureInfoPresenter();
+  featureInfoPresenter = container.resolve("featureInfoPresenter");
 
   callback = (generatedViewModel) => {
     viewModel = generatedViewModel;
