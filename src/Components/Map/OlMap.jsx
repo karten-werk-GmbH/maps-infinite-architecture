@@ -1,17 +1,17 @@
 import Map from "ol/Map";
 import View from "ol/View";
-import MapPresenter from "./MapPresenter";
-import { useEffect, useRef, useState } from "react";
+import { useInject } from "../../Shared/IOC/useInject";
+import { useEffect, useState } from "react";
 import LayerControl from "../Layers/LayerControl";
 import FeatureInfoContainer from "../FeatureInfo/FeatureInfoContainer";
 import "./olMap.css";
 const OlMap = () => {
-  const mapPresenter = useRef(new MapPresenter());
+  const mapPresenter = useInject("mapPresenter");
   const [olMap, setOlMap] = useState(null);
 
   useEffect(() => {
     const load = async () => {
-      const vm = await mapPresenter.current.initMap();
+      const vm = await mapPresenter.initMap();
       if (vm && olMap === null) {
         const map = new Map({
           target: "olMap",
@@ -21,7 +21,7 @@ const OlMap = () => {
             center: vm.center,
           }),
         });
-        addMapEventListeners(map, mapPresenter.current);
+        addMapEventListeners(map, mapPresenter);
         setOlMap(map);
       }
     };

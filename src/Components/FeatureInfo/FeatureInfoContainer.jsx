@@ -1,12 +1,12 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
+import { useInject } from "../../Shared/IOC/useInject";
 import "./featureInfos.css";
-import FeatureInfoPresenter from "./FeatureInfoPresenter";
 import AttributeTable from "./AttributeTable";
 import PropTypes from "prop-types";
 
 const FeatureInfoContainer = (props) => {
   const [featureInfos, setFeatureInfos] = useState(null);
-  const featureInfoPresenter = useRef(new FeatureInfoPresenter());
+  const featureInfoPresenter = useInject("featureInfoPresenter");
   const handleClickEvents = async (e, map) => {
     const resolution = map.getView().getResolution();
     const layers = map.getLayers().getArray();
@@ -19,7 +19,7 @@ const FeatureInfoContainer = (props) => {
       );
     });
 
-    featureInfoPresenter.current.getFeatureInfos({
+    featureInfoPresenter.getFeatureInfos({
       event: e,
       queryLayers,
       projection,
@@ -39,7 +39,7 @@ const FeatureInfoContainer = (props) => {
     if (map) {
       map.un("click", (e) => handleClickEvents(e, map));
       map.on("click", (e) => handleClickEvents(e, map));
-      featureInfoPresenter.current.subscribe(componentCb);
+      featureInfoPresenter.subscribe(componentCb);
     }
   }, [props.map]);
   if (featureInfos && featureInfos.available) {

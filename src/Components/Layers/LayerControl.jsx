@@ -1,11 +1,11 @@
 import { useRef, useEffect, useState } from "react";
 import Layer from "./Layer";
-import LayerPresenter from "./LayerPresenter";
 import PropTypes from "prop-types";
 import "./layers.css";
+import { useInject } from "../../Shared/IOC/useInject";
 
 const LayerControl = (props) => {
-  const layerPresenter = useRef(new LayerPresenter());
+  const layerPresenter = useInject("layerPresenter");
   const [layers, setLayers] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const LayerControl = (props) => {
           setLayers(vm);
         }
       };
-      await layerPresenter.current.initLayers(callback);
+      await layerPresenter.initLayers(callback);
     };
     load();
   }, []);
@@ -37,7 +37,7 @@ const LayerControl = (props) => {
         <Layer
           key={overlay.name}
           layer={overlay}
-          updateLayer={layerPresenter.current.updateLayer}
+          updateLayer={layerPresenter.updateLayer}
         />
       ))}
     </div>
