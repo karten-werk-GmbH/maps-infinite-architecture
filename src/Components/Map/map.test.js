@@ -1,4 +1,3 @@
-//import MapPresenter from "./MapPresenter";
 import httpGateway from "../../Shared/HttpGateway";
 import urlGateway from "../../Shared/UrlGateway";
 import { it, vi, expect, beforeEach } from "vitest";

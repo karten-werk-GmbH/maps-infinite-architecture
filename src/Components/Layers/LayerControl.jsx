@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Layer from "./Layer";
 import PropTypes from "prop-types";
 import "./layers.css";
