@@ -6,7 +6,6 @@ class MapRepository {
   httpGateway = null;
   urlGateway = null;
   pm = null;
-  olMap = null;
   isMapLoading = false; // fixes multiple useEffect calls
   isLayerLoading = false;
 
