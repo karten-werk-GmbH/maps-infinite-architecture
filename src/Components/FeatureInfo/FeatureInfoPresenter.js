@@ -1,19 +1,21 @@
-import featureInfoRepository from "./FeatureInfoRepository";
-
 class FeatureInfoPresenter {
+  featureInfoRepository = null;
+  constructor(featureInfoRepository) {
+    this.featureInfoRepository = featureInfoRepository;
+  }
   subscribe(componentCb) {
     const callback = (pm) => {
       const vm = this.pmToVm(pm);
       componentCb(vm);
     };
-    featureInfoRepository.subscribe(callback);
+    this.featureInfoRepository.subscribe(callback);
   }
 
   async getFeatureInfos({ event, queryLayers, projection, resolution } = {}) {
     if (!event || !queryLayers || !projection || !resolution) {
       return false;
     }
-    await featureInfoRepository.getFeatureInfos({
+    await this.featureInfoRepository.getFeatureInfos({
       event,
       queryLayers,
       projection,
