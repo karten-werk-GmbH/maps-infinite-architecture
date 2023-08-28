@@ -1,9 +1,12 @@
-import mapRepository from "./MapRepository";
-
 class MapPresenter {
+  mapRepository = null;
+  constructor(mapRepository) {
+    this.mapRepository = mapRepository;
+  }
+
   async initMap() {
     try {
-      const mapConfig = await mapRepository.initMap();
+      const mapConfig = await this.mapRepository.initMap();
       return this.pmToVm(mapConfig);
     } catch (error) {
       console.error(error);
@@ -18,7 +21,7 @@ class MapPresenter {
   }
 
   updatePm(vm) {
-    mapRepository.updatePm({ ...vm });
+    this.mapRepository.updatePm({ ...vm });
   }
 }
 
