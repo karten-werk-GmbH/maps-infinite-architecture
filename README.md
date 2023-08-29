@@ -4,8 +4,7 @@ This project is an example of how to apply the [infinite architecture](https://w
 
 ## Architecture Overview
 
-This project uses the **Observer Pattern**, **Presenters**, **Repositories** and **Gateways** to display a webmap. Third party libraries
-like OpenLayers or React are only used in Components and Gateways. This separation of concerns allows great testability
+This project uses the **Observer Pattern**, **Presenters**, **Repositories**, **Gateways** and a basic **IOC Container** to display a webmap. Third party libraries like OpenLayers or React are only used in Components and Gateways. This separation of concerns allows great testability
 and scales very well.
 <br /><br />
 **Features:**
@@ -23,17 +22,15 @@ and scales very well.
 
 ![image](https://github.com/karten-werk-GmbH/maps-infinite-architecture/assets/6850977/8b017c07-5495-4335-ad0e-ce64dd23e3b0)
 
-
-
-
-
 ## Getting started
 
-Clone the project
+First, clone the project
 
 ```bash
 git clone https://github.com/karten-werk-GmbH/maps-infinite-architecture.git
 ```
+
+Then...
 
 ```bash
 # enter the directory
