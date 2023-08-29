@@ -1,15 +1,19 @@
-import httpGateway from "../../Shared/HttpGateway";
-import urlGateway from "../../Shared/UrlGateway";
 import { it, expect, vi, beforeEach } from "vitest";
 import { overlays, layerQueryParams } from "../../Shared/testHelpers";
-import container from "../../Shared/IOC/container";
+import appIoc from "../../Shared/IOC/appIoc";
+
 let viewModel;
 let layerPresenter;
+let httpGateway;
+let urlGateway;
 let callback;
 
 beforeEach(() => {
   viewModel = null;
-  layerPresenter = container.resolve("layerPresenter");
+  layerPresenter = appIoc.get("layerPresenter");
+  httpGateway = appIoc.get("httpGateway");
+  urlGateway = appIoc.get("urlGateway");
+
   httpGateway.get = vi.fn().mockImplementation(() => {
     return overlays;
   });

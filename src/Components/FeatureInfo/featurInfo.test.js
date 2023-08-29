@@ -1,17 +1,16 @@
 import { it, expect, vi, beforeEach } from "vitest";
-import featureInfoRepository from "./FeatureInfoRepository";
 import { getFeatureInfoParams, fakePm } from "../../Shared/testHelpers";
-import httpGateway from "../../Shared/HttpGateway";
-import container from "../../Shared/IOC/container";
+import appIoc from "../../Shared/IOC/appIoc";
 
 let viewModel;
 let featureInfoPresenter;
+let featureInfoRepository;
 let callback;
 
 beforeEach(() => {
   viewModel = null;
-  featureInfoPresenter = container.resolve("featureInfoPresenter");
-
+  featureInfoPresenter = appIoc.get("featureInfoPresenter");
+  featureInfoRepository = appIoc.get("featureInfoRepository");
   callback = (generatedViewModel) => {
     viewModel = generatedViewModel;
   };
@@ -32,7 +31,10 @@ it("should return false when no params are provided", async () => {
 
 it("should return false for the available prop, when empty queryLayers array is provided", async () => {
   featureInfoPresenter.subscribe(callback);
-  const gatewaySpy = vi.spyOn(httpGateway, "getFeatureInfo");
+  const gatewaySpy = vi.spyOn(
+    featureInfoPresenter.featureInfoRepository.gateway,
+    "getFeatureInfo",
+  );
   await featureInfoPresenter.getFeatureInfos({
     ...getFeatureInfoParams,
     queryLayers: [],

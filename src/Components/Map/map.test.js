@@ -1,14 +1,17 @@
-import httpGateway from "../../Shared/HttpGateway";
-import urlGateway from "../../Shared/UrlGateway";
+import appIoc from "../../Shared/IOC/appIoc";
 import { it, vi, expect, beforeEach } from "vitest";
 import mapConfig from "./mapConfig";
-import container from "../../Shared/IOC/container";
 
 let mapPresenter;
+let httpGateway;
+let urlGateway;
 let parsedSearchParams;
 
 beforeEach(() => {
-  mapPresenter = container.resolve("mapPresenter");
+  mapPresenter = appIoc.get("mapPresenter");
+  httpGateway = appIoc.get("httpGateway");
+  urlGateway = appIoc.get("urlGateway");
+
   parsedSearchParams = {
     zoom: 11,
     center: "5700000,2344456",
