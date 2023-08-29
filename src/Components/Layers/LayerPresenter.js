@@ -1,10 +1,13 @@
-import mapRepository from "../Map/MapRepository";
-
 class LayerPresenter {
+  mapRepository = null;
+
+  constructor(mapRepository) {
+    this.mapRepository = mapRepository;
+  }
   async initLayers(componentCb) {
     try {
       const callback = this.getCallback(componentCb);
-      await mapRepository.initLayers(callback);
+      await this.mapRepository.initLayers(callback);
     } catch (error) {
       console.error(error);
     }
@@ -20,15 +23,15 @@ class LayerPresenter {
     return false;
   }
 
-  updateLayer({ layer, visible = true, opacity = 1 }) {
+  updateLayer = ({ layer, visible = true, opacity = 1 }) => {
     if (layer) {
-      mapRepository.updateLayer({
+      this.mapRepository.updateLayer({
         layername: layer.name,
         visible,
         opacity: parseFloat(opacity),
       });
     }
-  }
+  };
 }
 
 export default LayerPresenter;
