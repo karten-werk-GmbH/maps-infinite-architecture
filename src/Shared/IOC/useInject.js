@@ -15,5 +15,5 @@ const useContainer = () => {
 // Hook to inject dependencies from the container
 export const useInject = (identifier) => {
   const container = useContainer();
-  return container.resolve(identifier);
+  return container.get(identifier);
 };
