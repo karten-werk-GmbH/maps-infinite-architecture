@@ -102,5 +102,5 @@ class UrlGateway {
     return this.sanitizeQueryParams(queryParams);
   }
 }
-const urlGateway = new UrlGateway();
-export default urlGateway;
+
+export default UrlGateway;

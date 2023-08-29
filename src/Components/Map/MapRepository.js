@@ -1,7 +1,3 @@
-import httpGateway from "../../Shared/HttpGateway";
-import urlGateway from "../../Shared/UrlGateway";
-import Observable from "../../Shared/Observable";
-
 class MapRepository {
   httpGateway = null;
   urlGateway = null;
@@ -9,10 +5,10 @@ class MapRepository {
   isMapLoading = false; // fixes multiple useEffect calls
   isLayerLoading = false;
 
-  constructor() {
+  constructor(httpGateway, urlGateway, pm) {
     this.httpGateway = httpGateway;
     this.urlGateway = urlGateway;
-    this.pm = new Observable({});
+    this.pm = pm;
   }
 
   async initMap() {
@@ -106,6 +102,5 @@ class MapRepository {
     this.updatePm({ overlays: updatedOvelays });
   };
 }
-const mapRepository = new MapRepository();
 
-export default mapRepository;
+export default MapRepository;

@@ -147,5 +147,4 @@ class HttpGateway {
   };
 }
 
-const httpGateway = new HttpGateway();
-export default httpGateway;
+export default HttpGateway;

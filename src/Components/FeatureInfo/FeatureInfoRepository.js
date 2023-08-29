@@ -1,13 +1,10 @@
-import Observable from "../../Shared/Observable";
-import httpGateway from "../../Shared/HttpGateway";
-
 class FeatureInfoRepository {
   programmersModel = null;
   gateway = null;
 
-  constructor() {
-    this.programmersModel = new Observable({ available: false });
+  constructor(httpGateway, pm) {
     this.gateway = httpGateway;
+    this.programmersModel = pm;
   }
 
   setPm = (dto) => {
@@ -35,5 +32,4 @@ class FeatureInfoRepository {
   };
 }
 
-const featureInfoRepository = new FeatureInfoRepository();
-export default featureInfoRepository;
+export default FeatureInfoRepository;
