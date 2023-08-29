@@ -24,10 +24,16 @@ const LayerControl = (props) => {
     const map = props.map;
     if (map && layers.length > 0) {
       layers.forEach((layer) => {
-        map.getLayers().remove(layer.tileLayer);
         map.addLayer(layer.tileLayer);
       });
     }
+    return () => {
+      if (map && layers.length > 0) {
+        layers.forEach((layer) => {
+          map.getLayers().remove(layer.tileLayer);
+        });
+      }
+    };
   }, [props.map]);
 
   return (

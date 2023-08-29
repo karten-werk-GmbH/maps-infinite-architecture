@@ -37,10 +37,14 @@ const FeatureInfoContainer = (props) => {
     };
 
     if (map) {
-      map.un("click", (e) => handleClickEvents(e, map));
       map.on("click", (e) => handleClickEvents(e, map));
       featureInfoPresenter.subscribe(componentCb);
     }
+    return () => {
+      if (map) {
+        map.un("click", (e) => handleClickEvents(e, map));
+      }
+    };
   }, [props.map]);
   if (featureInfos && featureInfos.available) {
     return (
