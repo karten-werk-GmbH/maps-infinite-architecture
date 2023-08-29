@@ -1,4 +1,4 @@
-import Container from "./Container";
+import IocContainer from "./IocContainer";
 import { it, expect, beforeEach } from "vitest";
 
 let container = null;
@@ -8,7 +8,7 @@ class Dummy {
   }
 }
 beforeEach(() => {
-  container = new Container();
+  container = new IocContainer();
 });
 
 it("should create a class instance.", () => {

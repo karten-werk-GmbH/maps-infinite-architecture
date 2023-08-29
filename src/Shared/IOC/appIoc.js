@@ -1,4 +1,4 @@
-import Container from "./Container";
+import IocContainer from "./IocContainer";
 import MapPresenter from "../../Components/Map/MapPresenter";
 import MapRepository from "../../Components/Map/MapRepository";
 import LayerPresenter from "../../Components/Layers/LayerPresenter";
@@ -8,7 +8,7 @@ import HttpGateway from "../HttpGateway";
 import UrlGateway from "../UrlGateway";
 import Observable from "../Observable";
 
-const appIoc = new Container();
+const appIoc = new IocContainer();
 
 // pm initial values
 appIoc.register("mapPmInitValue", {});

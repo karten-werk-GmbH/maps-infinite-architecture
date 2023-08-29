@@ -1,4 +1,4 @@
-class Container {
+class IocContainer {
   #services = null;
   #singletons = null;
 
@@ -60,4 +60,4 @@ class Container {
   }
 }
 
-export default Container;
+export default IocContainer;
