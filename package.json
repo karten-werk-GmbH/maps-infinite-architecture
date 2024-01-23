@@ -10,6 +10,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@hkfrei/iocjs": "^1.0.2",
     "ol": "^7.4.0",
     "prop-types": "^15.8.1",
     "query-string": "^8.1.0",
