@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 import Layer from "./Layer";
-import PropTypes from "prop-types";
 import "./layers.css";
 import { useInject } from "../../Shared/IOC/useInject";
+import type OlMap from "ol/Map";
+import type { Overlay } from "./types";
 
-const LayerControl = (props) => {
+interface LayerControlProps {
+  map: OlMap | null;
+}
+
+const LayerControl = (props: LayerControlProps) => {
   const layerPresenter = useInject("layerPresenter");
-  const [layers, setLayers] = useState([]);
+  const [layers, setLayers] = useState<Overlay[]>([]);
 
   useEffect(() => {
     const load = async () => {
-      const callback = (vm) => {
+      const callback = (vm: Overlay[] | undefined) => {
         if (vm) {
           setLayers(vm);
         }
@@ -51,7 +56,3 @@ const LayerControl = (props) => {
 };
 
 export default LayerControl;
-
-LayerControl.propTypes = {
-  map: PropTypes.object,
-};

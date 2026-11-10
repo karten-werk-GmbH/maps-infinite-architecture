@@ -1,6 +1,18 @@
-import PropTypes from "prop-types";
+import type { ReactNode } from "react";
 import "./featureInfo.css";
-const AttributeTable = (props) => {
+
+/** A feature as delivered by FeatureInfoPresenter.pmToVm. */
+export interface FeatureInfo {
+  layername: string;
+  keys: string[];
+  props: Record<string, ReactNode>;
+}
+
+interface AttributeTableProps {
+  feature: FeatureInfo;
+}
+
+const AttributeTable = (props: AttributeTableProps) => {
   const { feature } = props;
   return (
     <table>
@@ -26,7 +38,3 @@ const AttributeTable = (props) => {
 };
 
 export default AttributeTable;
-
-AttributeTable.propTypes = {
-  feature: PropTypes.object.isRequired,
-};

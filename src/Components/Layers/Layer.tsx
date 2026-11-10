@@ -1,6 +1,11 @@
-import PropTypes from "prop-types";
+import type { LayerUpdate, Overlay } from "./types";
 
-const Layer = ({ layer, updateLayer }) => {
+interface LayerProps {
+  layer: Overlay;
+  updateLayer: (update: LayerUpdate) => void;
+}
+
+const Layer = ({ layer, updateLayer }: LayerProps) => {
   const { name, visible, opacity, legendUrl } = layer;
   return (
     <div className="layer__item">
@@ -40,8 +45,3 @@ const Layer = ({ layer, updateLayer }) => {
 };
 
 export default Layer;
-
-Layer.propTypes = {
-  layer: PropTypes.object.isRequired,
-  updateLayer: PropTypes.func.isRequired,
-};

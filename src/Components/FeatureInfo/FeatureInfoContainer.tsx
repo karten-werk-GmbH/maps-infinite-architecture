@@ -1,13 +1,29 @@
 import { useEffect, useState } from "react";
 import { useInject } from "../../Shared/IOC/useInject";
 import "./featureInfos.css";
-import AttributeTable from "./AttributeTable";
-import PropTypes from "prop-types";
+import AttributeTable, { type FeatureInfo } from "./AttributeTable";
+import type OlMap from "ol/Map";
+import type MapBrowserEvent from "ol/MapBrowserEvent";
+import type BaseLayer from "ol/layer/Base";
 
-const FeatureInfoContainer = (props) => {
-  const [featureInfos, setFeatureInfos] = useState(null);
+/** The view model delivered by FeatureInfoPresenter.subscribe. */
+interface FeatureInfoVm {
+  available: boolean;
+  error?: string;
+  vectorLayer: BaseLayer;
+  features: FeatureInfo[];
+}
+
+interface FeatureInfoContainerProps {
+  map: OlMap | null;
+}
+
+const FeatureInfoContainer = (props: FeatureInfoContainerProps) => {
+  const [featureInfos, setFeatureInfos] = useState<FeatureInfoVm | null>(
+    null,
+  );
   const featureInfoPresenter = useInject("featureInfoPresenter");
-  const handleClickEvents = async (e, map) => {
+  const handleClickEvents = async (e: MapBrowserEvent, map: OlMap) => {
     const resolution = map.getView().getResolution();
     const layers = map.getLayers().getArray();
     const projection = map.getView().getProjection();
@@ -29,14 +45,14 @@ const FeatureInfoContainer = (props) => {
 
   useEffect(() => {
     const map = props.map;
-    const componentCb = (vm) => {
-      setFeatureInfos(vm);
-      if (!vm.vectorLayer.get("map")) {
-        map.addLayer(vm.vectorLayer);
-      }
-    };
 
     if (map) {
+      const componentCb = (vm: FeatureInfoVm) => {
+        setFeatureInfos(vm);
+        if (!vm.vectorLayer.get("map")) {
+          map.addLayer(vm.vectorLayer);
+        }
+      };
       map.on("click", (e) => handleClickEvents(e, map));
       featureInfoPresenter.subscribe(componentCb);
     }
@@ -68,7 +84,3 @@ const FeatureInfoContainer = (props) => {
   return <div className="featureInfoContainer">No Feature Infos available</div>;
 };
 export default FeatureInfoContainer;
-
-FeatureInfoContainer.propTypes = {
-  map: PropTypes.object,
-};
