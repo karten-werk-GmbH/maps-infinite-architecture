@@ -13,7 +13,7 @@
     "@hkfrei/iocjs": "^1.1.1",
     "ol": "^7.5.2",
     "prop-types": "^15.8.1",
-    "query-string": "^8.2.0",
+    "query-string": "^10.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
