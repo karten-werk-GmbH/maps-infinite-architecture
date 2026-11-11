@@ -47,3 +47,17 @@ it("should load the map config with query params", async () => {
     basemap: mapConfig.basemap,
   });
 });
+
+it("shares one map load between concurrent callers (StrictMode runs effects twice)", async () => {
+  urlGateway.parseQueryParams = vi.fn().mockImplementation(() => ({}));
+  const mapRepository = appIoc.get("mapRepository");
+
+  const [first, second] = await Promise.all([
+    mapRepository.initMap(),
+    mapRepository.initMap(),
+  ]);
+
+  expect(httpGateway.get).toHaveBeenCalledTimes(1);
+  expect(first).toEqual(second);
+  expect(second.basemap).toBe(mapConfig.basemap);
+});

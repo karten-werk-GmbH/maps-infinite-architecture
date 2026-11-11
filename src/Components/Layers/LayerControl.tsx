@@ -3,6 +3,7 @@ import Layer from "./Layer";
 import "./layers.css";
 import { useInject } from "../../Shared/IOC/useInject";
 import type OlMap from "ol/Map";
+import type BaseLayer from "ol/layer/Base";
 import type { Overlay } from "./types";
 
 interface LayerControlProps {
@@ -12,12 +13,22 @@ interface LayerControlProps {
 const LayerControl = (props: LayerControlProps) => {
   const layerPresenter = useInject("layerPresenter");
   const [layers, setLayers] = useState<Overlay[]>([]);
+  // the map layers only change when the set of overlays changes, not on every
+  // visibility/opacity update, so keep the previous array when nothing changed
+  const [tileLayers, setTileLayers] = useState<BaseLayer[]>([]);
 
   useEffect(() => {
     const load = async () => {
       const callback = (vm: Overlay[] | undefined) => {
         if (vm) {
           setLayers(vm);
+          setTileLayers((previous) => {
+            const next = vm.map((layer) => layer.tileLayer);
+            const unchanged =
+              previous.length === next.length &&
+              previous.every((tileLayer, i) => tileLayer === next[i]);
+            return unchanged ? previous : next;
+          });
         }
       };
       await layerPresenter.initLayers(callback);
@@ -27,19 +38,16 @@ const LayerControl = (props: LayerControlProps) => {
 
   useEffect(() => {
     const map = props.map;
-    if (map && layers.length > 0) {
-      layers.forEach((layer) => {
-        map.addLayer(layer.tileLayer);
-      });
-    }
+    if (!map) return;
+    tileLayers.forEach((tileLayer) => {
+      map.addLayer(tileLayer);
+    });
     return () => {
-      if (map && layers.length > 0) {
-        layers.forEach((layer) => {
-          map.getLayers().remove(layer.tileLayer);
-        });
-      }
+      tileLayers.forEach((tileLayer) => {
+        map.getLayers().remove(tileLayer);
+      });
     };
-  }, [props.map]);
+  }, [props.map, tileLayers]);
 
   return (
     <div className="layers">

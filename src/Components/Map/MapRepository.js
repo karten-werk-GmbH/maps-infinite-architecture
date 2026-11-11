@@ -2,8 +2,8 @@ class MapRepository {
   httpGateway = null;
   urlGateway = null;
   pm = null;
-  isMapLoading = false; // fixes multiple useEffect calls
-  isLayerLoading = false;
+  mapLoading = null; // the in-flight map load, shared by concurrent callers
+  isLayersLoading = false;
 
   constructor(httpGateway, urlGateway, pm) {
     this.httpGateway = httpGateway;
@@ -11,10 +11,20 @@ class MapRepository {
     this.pm = pm;
   }
 
-  async initMap() {
-    if (this.isMapLoading === true) return false;
-    this.isMapLoading = true;
+  /*
+   * loads the map config once and shares the result with concurrent callers
+   * (React StrictMode runs effects twice; the config must only be loaded once).
+   */
+  initMap() {
+    if (!this.mapLoading) {
+      this.mapLoading = this.loadMap().finally(() => {
+        this.mapLoading = null;
+      });
+    }
+    return this.mapLoading;
+  }
 
+  async loadMap() {
     // update the url every time the pm changes
     this.subscribe((pm) => this.updateUrl({ ...pm }));
     try {
@@ -26,11 +36,9 @@ class MapRepository {
         center: queryParams.center || mapConfigDto.center,
       };
       this.updatePm(pm);
-      this.isMapLoading = false;
       return pm;
     } catch (error) {
       console.error(error);
-      this.isMapLoading = false;
     }
   }
 
@@ -63,7 +71,7 @@ class MapRepository {
       this.isLayersLoading = false;
     } catch (error) {
       console.error(error);
-      this.isLayerLoading = false;
+      this.isLayersLoading = false;
     }
   }
 

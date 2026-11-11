@@ -10,10 +10,13 @@ const OlMap = () => {
   const [olMap, setOlMap] = useState(null);
 
   useEffect(() => {
+    let cancelled = false;
+    let map = null;
     const load = async () => {
       const vm = await mapPresenter.initMap();
-      if (vm && olMap === null) {
-        const map = new Map({
+      // the effect may have been cleaned up while the config was loading
+      if (vm && !cancelled) {
+        map = new Map({
           target: "olMap",
           layers: [vm.basemap],
           view: new View({
@@ -26,7 +29,14 @@ const OlMap = () => {
       }
     };
     load();
-  }, []);
+    return () => {
+      cancelled = true;
+      if (map) {
+        map.setTarget(undefined); // detach from the DOM and release listeners
+        setOlMap(null);
+      }
+    };
+  }, [mapPresenter]);
 
   return (
     <>
