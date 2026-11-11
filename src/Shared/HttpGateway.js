@@ -4,13 +4,13 @@ import TileLayer from "ol/layer/Tile";
 import { XYZ, TileWMS } from "ol/source";
 import VectorLayer from "ol/layer/Vector.js";
 import { Vector as VectorSource } from "ol/source";
-import WMSGetFeatureInfo from "ol/format/WMSGetFeatureInfo";
+import GeoJSON from "ol/format/GeoJSON";
 import Style from "ol/style/Style";
 import Stroke from "ol/style/Stroke";
 import Fill from "ol/style/Fill";
 
 const vectorSource = new VectorSource({
-  format: new WMSGetFeatureInfo(),
+  format: new GeoJSON(),
 });
 const featureOverlayLayer = new VectorLayer({
   source: vectorSource,
@@ -69,18 +69,18 @@ class HttpGateway {
       const url = layer
         ?.getSource()
         ?.getFeatureInfoUrl(event.coordinate, resolution, projection, {
-          INFO_FORMAT: "text/xml; subtype=gml/3.2.1",
+          INFO_FORMAT: "application/json; subtype=geojson",
         });
       if (url) {
         try {
           const response = await fetch(url);
-          const xml = await response.text();
-          if (xml) {
-            const feature = vectorSource.getFormat().readFeature(xml);
-            if (feature) {
+          const json = await response.text();
+          if (json) {
+            const features = vectorSource.getFormat().readFeatures(json);
+            for (const feature of features) {
               feature.set("layername", layer.get("name"));
-              vectorSource.addFeature(feature);
             }
+            vectorSource.addFeatures(features);
           }
         } catch (error) {
           return new Promise((resolve) =>

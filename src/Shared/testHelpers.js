@@ -383,6 +383,9 @@ export const fakePm = {
       getProperties() {
         return fakePm.properties;
       },
+      getGeometryName() {
+        return "geometryProperty";
+      },
     },
   ],
 

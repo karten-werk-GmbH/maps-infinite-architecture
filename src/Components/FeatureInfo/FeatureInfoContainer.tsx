@@ -53,14 +53,14 @@ const FeatureInfoContainer = (props: FeatureInfoContainerProps) => {
           map.addLayer(vm.vectorLayer);
         }
       };
-      map.on("click", (e) => handleClickEvents(e, map));
+      // keep a reference, so the cleanup removes this exact listener
+      const onClick = (e: MapBrowserEvent) => handleClickEvents(e, map);
+      map.on("click", onClick);
       featureInfoPresenter.subscribe(componentCb);
+      return () => {
+        map.un("click", onClick);
+      };
     }
-    return () => {
-      if (map) {
-        map.un("click", (e) => handleClickEvents(e, map));
-      }
-    };
   }, [props.map]);
   if (featureInfos && featureInfos.available) {
     return (

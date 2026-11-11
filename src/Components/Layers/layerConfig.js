@@ -1,7 +1,6 @@
 const attribution =
   "© Geodata: <a href='https://www.swisstopo.admin.ch/de/home.html'>Swisstopo</a>";
-const swisstopoBaseUrl =
-  "https://wms.geo.admin.ch/?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities";
+const swisstopoBaseUrl = "https://wms.geo.admin.ch/";
 const legendBaseUrl = "https://api3.geo.admin.ch/static/images/legends";
 const overlays = [
   {

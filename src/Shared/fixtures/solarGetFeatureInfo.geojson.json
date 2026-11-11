@@ -1,0 +1,65 @@
+{
+  "type": "FeatureCollection",
+  "name": "ch.bfe.solarenergie-eignung-daecher_getfeatureinfo",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::3857"
+    }
+  },
+  "xy_coordinate_resolution": 0.001,
+  "bbox": [
+    875565.824,
+    5891445.375,
+    875606.871,
+    5891495.444
+  ],
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "klasse": "3",
+        "flaeche": "277.055289780385",
+        "ausrichtung": "-128",
+        "neigung": "18",
+        "stromertrag_sommerhalbjahr": "35683",
+        "stromertrag_winterhalbjahr": "11261",
+        "finanzertrag": "4694.4",
+        "gwr_egid": "1346524"
+      },
+      "bbox": [
+        875565.824,
+        5891445.375,
+        875606.871,
+        5891495.444
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              875567.842,
+              5891495.444
+            ],
+            [
+              875606.871,
+              5891445.375
+            ],
+            [
+              875592.424,
+              5891446.89
+            ],
+            [
+              875565.824,
+              5891481.014
+            ],
+            [
+              875567.842,
+              5891495.444
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
