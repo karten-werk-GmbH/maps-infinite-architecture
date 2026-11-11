@@ -23,28 +23,29 @@ const FeatureInfoContainer = (props: FeatureInfoContainerProps) => {
     null,
   );
   const featureInfoPresenter = useInject("featureInfoPresenter");
-  const handleClickEvents = async (e: MapBrowserEvent, map: OlMap) => {
-    const resolution = map.getView().getResolution();
-    const layers = map.getLayers().getArray();
-    const projection = map.getView().getProjection();
-    const queryLayers = layers.filter((layer) => {
-      return (
-        layer.getVisible() === true &&
-        layer.getZIndex() !== 0 &&
-        layer.get("type") === "overlay"
-      );
-    });
-
-    featureInfoPresenter.getFeatureInfos({
-      event: e,
-      queryLayers,
-      projection,
-      resolution,
-    });
-  };
 
   useEffect(() => {
     const map = props.map;
+
+    const handleClickEvents = (e: MapBrowserEvent, map: OlMap) => {
+      const resolution = map.getView().getResolution();
+      const layers = map.getLayers().getArray();
+      const projection = map.getView().getProjection();
+      const queryLayers = layers.filter((layer) => {
+        return (
+          layer.getVisible() === true &&
+          layer.getZIndex() !== 0 &&
+          layer.get("type") === "overlay"
+        );
+      });
+
+      featureInfoPresenter.getFeatureInfos({
+        event: e,
+        queryLayers,
+        projection,
+        resolution,
+      });
+    };
 
     if (map) {
       const componentCb = (vm: FeatureInfoVm) => {
@@ -61,7 +62,7 @@ const FeatureInfoContainer = (props: FeatureInfoContainerProps) => {
         map.un("click", onClick);
       };
     }
-  }, [props.map]);
+  }, [props.map, featureInfoPresenter]);
   if (featureInfos && featureInfos.available) {
     return (
       <div className="featureInfoContainer">

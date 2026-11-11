@@ -1,10 +1,6 @@
-import { createContext, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import type IocContainer from "@hkfrei/iocjs";
-
-// create a new context for the container
-export const ContainerContext = createContext<IocContainer | undefined>(
-  undefined,
-);
+import { ContainerContext } from "./ContainerContext";
 
 interface ContainerProviderProps {
   container: IocContainer;

@@ -23,7 +23,7 @@ const LayerControl = (props: LayerControlProps) => {
       await layerPresenter.initLayers(callback);
     };
     load();
-  }, []);
+  }, [layerPresenter]);
 
   useEffect(() => {
     const map = props.map;
