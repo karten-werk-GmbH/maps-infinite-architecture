@@ -16,7 +16,7 @@ const featureOverlayLayer = new VectorLayer({
   source: vectorSource,
   style: new Style({
     stroke: new Stroke({ color: "rgb(0,0,0)", width: 5 }),
-    fill: new Fill({ color: "rgb(255,0,0,0.5" }),
+    fill: new Fill({ color: "rgba(255, 0, 0, 0.5)" }),
   }),
   zIndex: 10,
   name: "featureInfo",
