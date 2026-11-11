@@ -1,5 +1,6 @@
 import Map from "ol/Map";
 import View from "ol/View";
+import type MapPresenter from "./MapPresenter";
 import { useInject } from "../../Shared/IOC/useInject";
 import { useEffect, useState } from "react";
 import LayerControl from "../Layers/LayerControl";
@@ -7,11 +8,11 @@ import FeatureInfoContainer from "../FeatureInfo/FeatureInfoContainer";
 import "./olMap.css";
 const OlMap = () => {
   const mapPresenter = useInject("mapPresenter");
-  const [olMap, setOlMap] = useState(null);
+  const [olMap, setOlMap] = useState<Map | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    let map = null;
+    let map: Map | null = null;
     const load = async () => {
       const vm = await mapPresenter.initMap();
       // the effect may have been cleaned up while the config was loading
@@ -48,11 +49,11 @@ const OlMap = () => {
 };
 export default OlMap;
 
-function addMapEventListeners(map, presenter) {
+function addMapEventListeners(map: Map, presenter: MapPresenter) {
   map.on("moveend", (e) => {
     const view = e.map.getView();
     const params = {
-      zoom: parseInt(view.getZoom()),
+      zoom: Math.trunc(view.getZoom() ?? 0),
       center: view.getCenter(),
     };
     presenter.updatePm(params);
