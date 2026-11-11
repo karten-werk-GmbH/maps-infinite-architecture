@@ -1,0 +1,16 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "description": "Hold ESLint at v9: eslint-plugin-react@7.37.5 only supports eslint up to ^9.7. Remove once it supports ESLint 10.",
+      "matchPackageNames": ["eslint", "@eslint/js"],
+      "allowedVersions": "<10.0.0"
+    },
+    {
+      "description": "Hold TypeScript below 6.1: typescript-eslint@8 requires typescript >=4.8.4 <6.1.0. Remove once typescript-eslint supports newer versions.",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<6.1.0"
+    }
+  ]
+}
