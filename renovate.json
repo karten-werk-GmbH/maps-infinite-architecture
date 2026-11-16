@@ -1,7 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": ["config:recommended", "schedule:monthly"],
   "packageRules": [
+    {
+      "description": "One PR a month for everything except majors, image digests included. Majors stay separate; security fixes ignore the schedule.",
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "matchPackageNames": ["*"],
+      "matchUpdateTypes": ["minor", "patch", "digest"]
+    },
     {
       "description": "Hold ESLint at v9: eslint-plugin-react@7.37.5 only supports eslint up to ^9.7. Remove once it supports ESLint 10.",
       "matchPackageNames": ["eslint", "@eslint/js"],
