@@ -19,9 +19,7 @@ interface FeatureInfoContainerProps {
 }
 
 const FeatureInfoContainer = (props: FeatureInfoContainerProps) => {
-  const [featureInfos, setFeatureInfos] = useState<FeatureInfoVm | null>(
-    null,
-  );
+  const [featureInfos, setFeatureInfos] = useState<FeatureInfoVm | null>(null);
   const featureInfoPresenter = useInject("featureInfoPresenter");
 
   useEffect(() => {

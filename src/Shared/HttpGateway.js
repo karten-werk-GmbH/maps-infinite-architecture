@@ -42,8 +42,8 @@ class HttpGateway {
             if (layerConfig && layerConfig.length > 0) {
               layerConfig.forEach((layer) => {
                 layer.tileLayer = this.createOverlayLayer(layer);
-              }),
-                resolve(layerConfig);
+              });
+              resolve(layerConfig);
             } else {
               reject(new Error("layer config is not available"));
             }
